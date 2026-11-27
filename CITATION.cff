@@ -1,11 +1,11 @@
 cff-version: 1.2.0
 type: software
-title: "Agentic AI and Human Reason in Hadith Scholarship: Code and Run Manifests"
+title: "hadith-commentary-agents: Code and Run Manifests for 'Reading over the Commentator's Shoulder'"
 authors:
   - family-names: Ragab
     given-names: Muhammed
 version: 1.0.0
-# date-released: YYYY-MM-DD
+date-released: 2026-11-28
 repository-code: https://github.com/Muhammed-Ragab/hadith-commentary-agents
 license: MIT
 message: Cite this software and the release DOI when available.

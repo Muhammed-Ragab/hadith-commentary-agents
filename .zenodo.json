@@ -1,1 +1,21 @@
-{"title":"Agentic AI and Human Reason in Hadith Scholarship: Code and Run Manifests","upload_type":"software","creators":[{"name":"Ragab, Muhammed"}],"license":"mit","version":"1.0.0"}
+{
+  "title": "hadith-commentary-agents: Code and Run Manifests for \"Reading over the Commentator's Shoulder\"",
+  "upload_type": "software",
+  "description": "Code, prompts, run manifests and evaluation scores for the DH2027 long paper \"Reading over the Commentator's Shoulder: How AI Agents Derive and Use the Methods of Sunni and Shīʿī Ḥadīth Commentators\". The release contains the Study-Agent and Query-Agent pipeline, tests, scripts, Slurm jobs, run manifests and evaluation scores. Third-party corpus texts are not included; data/README.md explains how to obtain them.",
+  "creators": [
+    {
+      "name": "Ragab, Muhammed",
+      "affiliation": "Leibniz Institute for Educational Media | Georg Eckert Institute"
+    }
+  ],
+  "keywords": [
+    "hadith commentary",
+    "sharh",
+    "operationalisation",
+    "AI agents",
+    "digital hermeneutics",
+    "quotation verification"
+  ],
+  "license": "mit",
+  "version": "1.0.0"
+}
