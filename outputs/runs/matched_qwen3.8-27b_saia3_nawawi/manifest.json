@@ -1,0 +1,23 @@
+{
+  "commentator": "nawawi",
+  "corpus_hashes": {
+    "cayni": "0386e38410d8b8e841bdd09568492797aa4ea13c6dc1b4fa3d4079a9dac94079",
+    "nawawi": "2df61959f063d9c46eedaff3229c1e9ce3ce8c111e1ad2eb3a4835026a6cbc5e"
+  },
+  "date": "2026-09-14",
+  "git_sha": "78e0a2ad083e2630e256b8ff28b8b70a5ea9a25d",
+  "metrics_hashes": {},
+  "model_id": "qwen3.8-27b",
+  "parser_version": "2",
+  "prompt_hashes": {
+    "consolidate_global": "9ba49b8393c63479",
+    "consolidate_kitab": "7a4a36cfb6a93a89",
+    "horizon_diff": "692581030b60e6e8",
+    "naive_reading": "28846584b34e729b",
+    "read_commentary": "b63316d282b6764d",
+    "reduce_commentary": "8239bef8f1e6466c",
+    "segmentation": "98c70d5d6252a438"
+  },
+  "temperature": 0,
+  "weights_hash": ""
+}

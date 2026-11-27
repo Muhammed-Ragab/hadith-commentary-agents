@@ -1,0 +1,23 @@
+{
+  "commentator": "cayni",
+  "corpus_hashes": {
+    "cayni": "0f3b8a3313617ab936a8bd1a7013fdcc6ab233336721ec223382e7dd718c7bcb",
+    "nawawi": "d61a7caa5cc7e141dd799ed2a7170e920a85aecd58dc483be0080add2dbf832a"
+  },
+  "date": "2026-09-07",
+  "git_sha": "d9c7e1b700a4142aaa40fc86a921bd1bc5a05f6a",
+  "metrics_hashes": {},
+  "model_id": "/mnt/vast-kisski/projects/kisski-futurmig/hf_home/hub/Falcon-H1-Arabic-34B-Instruct",
+  "parser_version": "2",
+  "prompt_hashes": {
+    "consolidate_global": "9ba49b8393c63479",
+    "consolidate_kitab": "7a4a36cfb6a93a89",
+    "horizon_diff": "3957a53f7277159c",
+    "naive_reading": "28846584b34e729b",
+    "read_commentary": "1ca42aa9f60545be",
+    "reduce_commentary": "8239bef8f1e6466c",
+    "segmentation": "98c70d5d6252a438"
+  },
+  "temperature": 0,
+  "weights_hash": ""
+}

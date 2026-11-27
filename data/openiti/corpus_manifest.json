@@ -1,0 +1,132 @@
+{
+ "release": "OpenITI v2025.1.9",
+ "release_index": "OpenITI_metadata_2025-1-9.tsv",
+ "release_index_url": "https://github.com/OpenITI/RELEASE/blob/master/metadata/OpenITI_metadata_2025-1-9.tsv",
+ "resolution_policy": "Exact primary records resolved by author death date; no title-slug guesses or near-match substitutions.",
+ "not_pulled": {
+  "quran": "Wave 2 is reserved for Tanzil plus the Quranic Arabic Corpus root/morphology layer. No Quran text was taken from OpenITI."
+ },
+ "rijal_vocabularies": {
+  "sunni": [
+   "thiqa",
+   "saduq",
+   "da'if"
+  ],
+  "imami_shia": [
+   "thiqa",
+   "hasan",
+   "majhul"
+  ]
+ },
+ "records": [
+  {
+   "wave": 1,
+   "arm": "nawawi",
+   "author_death_ah": 261,
+   "death_bucket": "0275AH",
+   "title": "Sahih Muslim",
+   "openiti_uri": "0261Muslim.Sahih.Shamela0001727-ara1.mARkdown",
+   "release_path": "data/0261Muslim/0261Muslim.Sahih/0261Muslim.Sahih.Shamela0001727-ara1.mARkdown",
+   "source_url": "https://raw.githubusercontent.com/OpenITI/0275AH/master/data/0261Muslim/0261Muslim.Sahih/0261Muslim.Sahih.Shamela0001727-ara1.mARkdown",
+   "raw_file": "data/openiti/raw/0261Muslim.Sahih.Shamela0001727-ara1.mARkdown",
+   "output_file": "data/openiti/muslim_clusters.json",
+   "raw_sha256": "8126f063f53504b68d6e9e133cec049c10acf498c501f5f4897013efc1e56d9e",
+   "output_sha256": "018983f80f50c39d6a9626cfa40c5d51d6be01ed81629fd1ba5d40d5a6efce34",
+   "parser": "scripts/parse_muslim.py:parse",
+   "notes": "Parsed as transmission clusters; the flat bukhari-shaped parse was withdrawn 2026-08-25 (95% of records bundled multiple chains). cluster_ref is positional (kitab/bab/position): hadith_number repeats across both kitabs and babs, so it cannot identify a record. The canonical Abd al-Baqi number is carried separately in muslim_number where the source prints it (74% of clusters)."
+  },
+  {
+   "wave": 3,
+   "author_death_ah": 606,
+   "death_bucket": "0625AH",
+   "title": "al-Nihaya fi gharib al-hadith",
+   "openiti_uri": "0606IbnAthirMajdDin.NihayaFiGharib.Shamela0023691-ara1",
+   "release_path": "data/0606IbnAthirMajdDin/0606IbnAthirMajdDin.NihayaFiGharib/0606IbnAthirMajdDin.NihayaFiGharib.Shamela0023691-ara1",
+   "source_url": "https://raw.githubusercontent.com/OpenITI/0625AH/master/data/0606IbnAthirMajdDin/0606IbnAthirMajdDin.NihayaFiGharib/0606IbnAthirMajdDin.NihayaFiGharib.Shamela0023691-ara1",
+   "raw_file": "data/lexica/raw/0606IbnAthirMajdDin.NihayaFiGharib.Shamela0023691-ara1",
+   "output_file": "data/lexica/nihaya_entries.json",
+   "raw_sha256": "3ad329fda3a6537fefdb285bdd507f597a32079dcfdadc2582be3bbb8c35a854",
+   "output_sha256": "dcca8165d96346d2ad823c748f6ba2989355fd842c6da1cc3f3e63d54da0fad3",
+   "parser": "scripts/parse_openiti.py:parse_lexicon_file(style=nihaya)"
+  },
+  {
+   "wave": 3,
+   "author_death_ah": 711,
+   "death_bucket": "0725AH",
+   "title": "Lisan al-Arab",
+   "openiti_uri": "0711IbnManzurIfriqi.LisanCarab.Shamela0001687-ara1.mARkdown",
+   "release_path": "data/0711IbnManzurIfriqi/0711IbnManzurIfriqi.LisanCarab/0711IbnManzurIfriqi.LisanCarab.Shamela0001687-ara1.mARkdown",
+   "source_url": "https://raw.githubusercontent.com/OpenITI/0725AH/master/data/0711IbnManzurIfriqi/0711IbnManzurIfriqi.LisanCarab/0711IbnManzurIfriqi.LisanCarab.Shamela0001687-ara1.mARkdown",
+   "raw_file": "data/lexica/raw/0711IbnManzurIfriqi.LisanCarab.Shamela0001687-ara1.mARkdown",
+   "output_file": "data/lexica/lisan_entries.json",
+   "raw_sha256": "34fa56710a5b701532a34cb70f8fe440b261e80ae3c40d9667d18b65be7ed86d",
+   "output_sha256": "96e242dd557a833ee8721a2a646f444a38b1b05754e52f60b9f2aba31758f0f9",
+   "parser": "scripts/parse_openiti.py:parse_lexicon_file(style=lisan)"
+  },
+  {
+   "wave": 4,
+   "arm": "sunni",
+   "author_death_ah": 852,
+   "death_bucket": "0875AH",
+   "title": "Tahdhib al-Tahdhib",
+   "openiti_uri": "0852IbnHajarCasqalani.TahdhibTahdhib.JK000134-ara1.mARkdown",
+   "release_path": "data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.TahdhibTahdhib/0852IbnHajarCasqalani.TahdhibTahdhib.JK000134-ara1.mARkdown",
+   "source_url": "https://raw.githubusercontent.com/OpenITI/0875AH/master/data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.TahdhibTahdhib/0852IbnHajarCasqalani.TahdhibTahdhib.JK000134-ara1.mARkdown",
+   "raw_file": "data/rijal/raw/0852IbnHajarCasqalani.TahdhibTahdhib.JK000134-ara1.mARkdown",
+   "output_file": "data/rijal/sunni_rijal.json",
+   "raw_sha256": "e4b0e269c5bd1d9bf70a307ebe80edd49c08c05a1af0b0f801f6e271cb8ff4e6"
+  },
+  {
+   "wave": 4,
+   "arm": "sunni",
+   "author_death_ah": 852,
+   "death_bucket": "0875AH",
+   "title": "Taqrib al-Tahdhib",
+   "openiti_uri": "0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1.completed",
+   "release_path": "data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.TaqribTahdhib/0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1.completed",
+   "source_url": "https://raw.githubusercontent.com/OpenITI/0875AH/master/data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.TaqribTahdhib/0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1.completed",
+   "raw_file": "data/rijal/raw/0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1.completed",
+   "output_file": "data/rijal/sunni_rijal.json",
+   "raw_sha256": "178d493bd150032bc64a81ed4397d7e4a828209ee690deed283c1e63cada4637"
+  },
+  {
+   "wave": 4,
+   "arm": "imami_shia",
+   "author_death_ah": 450,
+   "death_bucket": "0450AH",
+   "title": "Rijal al-Najashi",
+   "openiti_uri": "0450Najashi.Rijal.Shia002931-ara1.mARkdown",
+   "release_path": "data/0450Najashi/0450Najashi.Rijal/0450Najashi.Rijal.Shia002931-ara1.mARkdown",
+   "source_url": "https://raw.githubusercontent.com/OpenITI/0450AH/master/data/0450Najashi/0450Najashi.Rijal/0450Najashi.Rijal.Shia002931-ara1.mARkdown",
+   "raw_file": "data/rijal/raw/0450Najashi.Rijal.Shia002931-ara1.mARkdown",
+   "output_file": "data/rijal/imami_rijal.json",
+   "raw_sha256": "a34bc95dbf6afef2b860bfd99e6a47fd16e3d16d2879ab145d30bf0abb5941e6"
+  },
+  {
+   "wave": 4,
+   "arm": "imami_shia",
+   "author_death_ah": 460,
+   "death_bucket": "0475AH",
+   "title": "Rijal al-Tusi",
+   "openiti_uri": "0460ShaykhTusi.Rijal.Shia002935-ara1.mARkdown",
+   "release_path": "data/0460ShaykhTusi/0460ShaykhTusi.Rijal/0460ShaykhTusi.Rijal.Shia002935-ara1.mARkdown",
+   "source_url": "https://raw.githubusercontent.com/OpenITI/0475AH/master/data/0460ShaykhTusi/0460ShaykhTusi.Rijal/0460ShaykhTusi.Rijal.Shia002935-ara1.mARkdown",
+   "raw_file": "data/rijal/raw/0460ShaykhTusi.Rijal.Shia002935-ara1.mARkdown",
+   "output_file": "data/rijal/imami_rijal.json",
+   "raw_sha256": "955b2b7114a5e2d96f11d23b0638c4ab2c9ec3a57ab13119d97cf7c2e128f678"
+  },
+  {
+   "wave": 4,
+   "arm": "imami_shia",
+   "author_death_ah": 460,
+   "death_bucket": "0475AH",
+   "title": "Fihrist al-Tusi",
+   "openiti_uri": "0460ShaykhTusi.Fihrist.Shia002934-ara1.mARkdown",
+   "release_path": "data/0460ShaykhTusi/0460ShaykhTusi.Fihrist/0460ShaykhTusi.Fihrist.Shia002934-ara1.mARkdown",
+   "source_url": "https://raw.githubusercontent.com/OpenITI/0475AH/master/data/0460ShaykhTusi/0460ShaykhTusi.Fihrist/0460ShaykhTusi.Fihrist.Shia002934-ara1.mARkdown",
+   "raw_file": "data/rijal/raw/0460ShaykhTusi.Fihrist.Shia002934-ara1.mARkdown",
+   "output_file": "data/rijal/imami_rijal.json",
+   "raw_sha256": "1c4975a18ca0bae40d4c062edad05eef5a8c2c243951dcc2a9bf785415db88df"
+  }
+ ]
+}

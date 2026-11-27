@@ -1,0 +1,23 @@
+{
+  "commentator": "cayni",
+  "corpus_hashes": {
+    "cayni": "0386e38410d8b8e841bdd09568492797aa4ea13c6dc1b4fa3d4079a9dac94079",
+    "nawawi": "2df61959f063d9c46eedaff3229c1e9ce3ce8c111e1ad2eb3a4835026a6cbc5e"
+  },
+  "date": "2026-08-27",
+  "git_sha": "659000306e18b67559079dc3c8d1028d478a8db1",
+  "metrics_hashes": {},
+  "model_id": "gemma-4-31b-it",
+  "parser_version": "2",
+  "prompt_hashes": {
+    "consolidate_global": "9ba49b8393c63479",
+    "consolidate_kitab": "7a4a36cfb6a93a89",
+    "horizon_diff": "f8fe4e5401dcac3e",
+    "naive_reading": "28846584b34e729b",
+    "read_commentary": "6ae958831fe9ac29",
+    "segmentation": "1a06113b117a78f7",
+    "self_check": "277517e96466ff73"
+  },
+  "temperature": 0,
+  "weights_hash": ""
+}

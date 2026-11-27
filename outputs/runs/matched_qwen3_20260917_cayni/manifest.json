@@ -1,0 +1,27 @@
+{
+  "commentator": "cayni",
+  "corpus_hashes": {
+    "cayni": "fe2641fb36846ac47f0069a43f4c80d60ed8aa2ed39c16250c0d966c5b98965b",
+    "nawawi": "a9cdfe1bfe172f26d8cb9e5be017c10696e9c069c78c5cc312de0db0be8175b5"
+  },
+  "date": "2026-09-18",
+  "git_sha": "a61df915ac2adbc9381b0390310f00d0f5a08052",
+  "metrics_hashes": {
+    "bukhari": "81191fa7e4460094f43ea007b5492ca11438663f50d4bdc855032bf74c313c1e",
+    "kafi": "a89ba101260e7e0f87dc6b36364451cb1473dbbe8acb50cd7a4dce989f44f350"
+  },
+  "model_id": "qwen3.8-27b",
+  "parser_version": "2",
+  "prompt_hashes": {
+    "consolidate_global": "5444e4d2ff039b15",
+    "consolidate_kitab": "cea0b81b80008632",
+    "horizon_diff": "c4cad968b1886d6b",
+    "naive_reading": "28846584b34e729b",
+    "read_commentary": "4a5db929b9cd24ab",
+    "read_commentary_legacy_example": "e9c891b108c44253",
+    "reduce_commentary": "08064aea9f4e3a11",
+    "segmentation": "5b4b4ff801d43003"
+  },
+  "temperature": 0,
+  "weights_hash": ""
+}

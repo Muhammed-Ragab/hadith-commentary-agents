@@ -1,0 +1,109 @@
+{
+  "_comment": "Editable lexicons for compare_systems.py and hermeneutics/answer_moves.py. Arabic forms are undiacritized surface forms matched after normalize_arabic (diacritics/hamza-forms folded); add variants freely.",
+
+  "commentator_names": {
+    "cayni": ["العيني", "العينى", "بدر الدين العيني", "al-ʿAynī", "al-Ayni", "al-'Ayni", "Aini"],
+    "nawawi": ["النووي", "النووى", "الامام النووي", "Nawawī", "Nawawi", "al-Nawawi"],
+    "mazandarani": ["المازندراني", "المازندرانى", "محمد صالح المازندراني", "Māzandarānī", "Mazandarani", "al-Mazandarani"]
+  },
+
+  "stated_limits": [
+    "لا أستطيع", "لا يمكنني", "لا يمكن لي", "غير موجود في المصادر", "لم أجد",
+    "ليس في المصادر المتوفرة", "لا يوجد في المصادر", "لم يرد في المصادر",
+    "لا تسعفني المصادر", "خارج نطاق", "لا يتوفر لدي", "لا يسعني الجزم",
+    "cannot", "not in the sources", "no source", "not available in the sources",
+    "I could not find", "I cannot", "outside the scope", "beyond the sources"
+  ],
+
+  "hedges": [
+    "يحتمل", "ربما", "لعل", "لعله", "الظاهر", "الأظهر", "والله أعلم", "فيما يبدو",
+    "قد يكون", "يمكن أن يكون",
+    "may", "perhaps", "likely", "possibly", "it seems", "it appears", "God knows best"
+  ],
+
+  "boosters": [
+    "قطعا", "قطعاً", "لا شك", "بلا ريب", "يقينا", "يقيناً", "إجماعا", "إجماعاً",
+    "بالضرورة", "لا جدال",
+    "certainly", "undoubtedly", "definitely", "without doubt", "unquestionably"
+  ],
+
+  "attribution_verbs": [
+    "قال", "روى", "روي", "ذكر", "نقل", "أخرجه", "رواه", "حدثنا", "أخبرنا", "يقول",
+    "said", "narrated", "reported", "related", "transmitted", "quoted"
+  ],
+
+  "honorifics": {
+    "imami_style": ["عليه السلام", "عليهم السلام", "صلوات الله عليه", "صلى الله عليه وآله",
+                    "صلى الله عليه وآله وسلم", "عليها السلام"],
+    "sunni_style": ["رضي الله عنه", "رضي الله عنها", "رضي الله عنهم", "صلى الله عليه وسلم",
+                    "ﷺ"]
+  },
+
+  "grading_terms": [
+    "صحيح", "حسن", "ضعيف", "موضوع", "منكر", "شاذ", "متفق عليه", "إسناده",
+    "صحيح الإسناد", "حسن الإسناد", "ضعيف الإسناد", "مرسل", "موقوف", "مرفوع",
+    "منقطع", "معلول", "شاهد", "متابعة"
+  ],
+
+  "domain_terms": [
+    "إسناد", "سند", "متن", "راو", "رواة", "ثقة", "مرسل", "موقوف", "مرفوع",
+    "جرح", "تعديل", "ناسخ", "منسوخ", "مشكل", "تأويل", "شرح", "تخريج", "علة",
+    "متواتر", "آحاد", "مدلس", "منقطع", "معنعن"
+  ],
+
+  "move_markers": {
+    "objection": ["فإن قيل", "قد يعترض", "يدعى", "الاشكال", "قد يقال", "objection", "it is claimed that", "it might be objected"],
+    "concession": ["صحيح أنه", "لا ننكر", "وإن كان", "نسلم أن", "admittedly", "granted that", "it is true that"],
+    "reply": ["قلنا", "والجواب", "قلت", "يجاب", "الجواب", "the answer", "the reply", "we respond", "in response"],
+    "proposal": ["فالحاصل", "الخلاصة", "وعليه", "نقترح", "خلاصة القول", "in sum", "we propose", "in conclusion", "to conclude"],
+    "isnad_grading_terms": ["صحيح", "حسن", "ضعيف", "موضوع", "منكر", "شاذ", "إسناده", "متفق عليه", "isnad", "grading", "authenticity"],
+    "lexical_gloss_markers": ["بمعنى", "معناه", "المراد به", "meaning", "refers to", "i.e."],
+    "claim_markers": ["والصحيح أن", "الصحيح أن", "الراجح", "الراجح أن", "الحق أن", "نرى أن",
+                      "والذي نراه", "نميل إلى أن", "the correct view", "we hold",
+                      "the view we hold", "in our view"],
+    "report_markers": ["ذهب الجمهور إلى", "ذهب إلى", "ذهب بعضهم إلى", "يرى فلان",
+                       "according to", "on the view of", "holds that"]
+  },
+
+  "level2_gold_variants": {
+    "q9_shum": [
+      {"item": "conditional_particle", "surfaces": ["إن كان الشؤم في شيء", "ان كان الشؤم في شيء"]},
+      {"item": "hikaya_can_ghayrihi", "surfaces": ["حكاية عن غيره", "حكاية عن أهل الجاهلية"]},
+      {"item": "aisha_rejection", "surfaces": ["كان أهل الجاهلية يقولون"]},
+      {"item": "kafi_shum_gloss",
+       "note": "al-Kafi 9815; the dowry/barrenness gloss is also in al-cAyni (غلاء مهرها، عقرها), so the fragment rule counts either tradition's wording",
+       "surfaces": ["فأما شؤم المرأة فكثرة مهرها وعقم رحمها", "شؤم المرأة فكثرة مهرها",
+                    "كثرة مهرها وعقم رحمها"],
+       "core_fragments": [["شؤم المرأة", "مهرها"]]}
+    ],
+    "q10_salat": [
+      {"item": "aisha_shabbahtumuna", "surfaces": ["شبهتمونا بالحمر والكلاب"]},
+      {"item": "la_yaqtau_shay",
+       "surfaces": ["لا يقطع الصلاة شيء", "لا يقطع صلاة المسلم شيء",
+                    "لا يقطع الصلاة شيء لا كلب ولا حمار ولا امرأة",
+                    "لا يقطع الصلاه شيء"],
+       "core_fragments": [["لا يقطع", "شي"]]},
+      {"item": "naskh", "surfaces": ["نسخ", "منسوخ"]},
+      {"item": "black_dog_shaytan", "surfaces": ["الكلب الأسود شيطان"]},
+      {"item": "muakhirat_al_rahl", "surfaces": ["مؤخرة الرحل"]}
+    ],
+    "q10_salat_en": [
+      {"item": "aisha_shabbahtumuna", "surfaces": ["you have made us equal to donkeys and dogs", "compared us to donkeys and dogs"]},
+      {"item": "la_yaqtau_shay", "surfaces": ["nothing interrupts the prayer", "nothing cuts off the prayer"]},
+      {"item": "naskh", "surfaces": ["abrogated", "abrogation"]},
+      {"item": "black_dog_shaytan", "surfaces": ["the black dog is a devil", "black dog is a satan"]},
+      {"item": "muakhirat_al_rahl", "surfaces": ["back of the saddle", "rear of the saddle"]}
+    ],
+    "q11_umirtu": [
+      {"item": "al_nas_mushrikun", "surfaces": ["المشركين", "مشركي العرب", "مشركو العرب"]},
+      {"item": "jizya", "surfaces": ["الجزية"]},
+      {"item": "yuqimu_salat_zakat", "surfaces": ["ويقيموا الصلاة ويؤتوا الزكاة"]},
+      {"item": "isma_dima", "surfaces": ["فإذا فعلوا ذلك عصموا مني دماءهم"]}
+    ]
+  },
+
+  "level2_qids": ["q9_shum", "q10_salat", "q10_salat_en", "q11_umirtu"],
+  "level1_qids": ["q1_ray", "q2_taarud", "q3_manaa", "q4_qadar", "q5_taqiyya", "q6_dua",
+                  "q7_warith", "q8_sin", "q1_ray_en", "q5_taqiyya_en", "q6_dua_en",
+                  "q5_taqiyya_colloq"]
+}

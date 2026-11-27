@@ -1,0 +1,14 @@
+{
+  "real_yield": 4.5167,
+  "control_yield": 1.9492,
+  "yield_ratio": 0.4315,
+  "real_grounding": 1.0,
+  "control_grounding": 1.0,
+  "n_real_moves": 271,
+  "n_control_moves": 115,
+  "n_real_requested": 60,
+  "n_control_requested": 59,
+  "threshold": 0.8,
+  "metric": "grounded moves per requested b\u0101b",
+  "claim1_withdrawn": false
+}

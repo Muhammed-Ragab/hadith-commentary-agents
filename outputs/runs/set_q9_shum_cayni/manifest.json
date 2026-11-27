@@ -1,0 +1,45 @@
+{
+  "commentator": "cayni",
+  "condition": "agent_method",
+  "corpus": "bukhari",
+  "corpus_explicit": false,
+  "corpus_hashes": {
+    "cayni": "4126627acd0a674d7bcaa75dd08bf2836ff6557f7b91344b2fb90f5b2d1ffe45",
+    "nawawi": "7b502e95ac432a7b521f214192a81cf08a1af7595238ab6ca3a4915acd5ae7e2"
+  },
+  "date": "2026-09-27",
+  "git_sha": "f09648c8ad08273440a60df8608d94568af314d5",
+  "max_tokens": 4000,
+  "method_run": "matched_qwen3_20260917",
+  "metrics_hashes": {
+    "bukhari": "7b39c969bbe7c9d64d56dee7ec4461c139d9cd0c0b80dbdb7c2219d6e6e32629",
+    "kafi": "86c3ecc797d11f5a40cc2a9a0ded556c87a1487c53745bd9fc151b16b3af290d"
+  },
+  "model_id": "qwen/qwen3.8-27b",
+  "parser_version": "2",
+  "prompt_hashes": {
+    "consolidate_global": "5444e4d2ff039b15",
+    "consolidate_kitab": "cea0b81b80008632",
+    "horizon_diff": "c4cad968b1886d6b",
+    "naive_reading": "28846584b34e729b",
+    "read_commentary": "4a5db929b9cd24ab",
+    "read_commentary_legacy_example": "e9c891b108c44253",
+    "reduce_commentary": "08064aea9f4e3a11",
+    "segmentation": "5b4b4ff801d43003"
+  },
+  "provider": "openrouter",
+  "provider_route": "deepinfra",
+  "quantization": "bf16",
+  "scope": [
+    "data/babs/cayni_babs.json",
+    "data/bukhari_raw.json",
+    "data/lexica/lisan_entries.json",
+    "data/lexica/nihaya_entries.json",
+    "data/quran/corpus_manifest.json",
+    "data/quran/quran_roots.json",
+    "data/rijal/sunni_rijal.json",
+    "outputs/networks/bukhari_metrics.json"
+  ],
+  "temperature": 0,
+  "weights_hash": ""
+}

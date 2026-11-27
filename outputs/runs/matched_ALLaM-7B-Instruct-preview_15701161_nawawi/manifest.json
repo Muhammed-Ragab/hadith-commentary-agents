@@ -1,0 +1,23 @@
+{
+  "commentator": "nawawi",
+  "corpus_hashes": {
+    "cayni": "0f3b8a3313617ab936a8bd1a7013fdcc6ab233336721ec223382e7dd718c7bcb",
+    "nawawi": "d61a7caa5cc7e141dd799ed2a7170e920a85aecd58dc483be0080add2dbf832a"
+  },
+  "date": "2026-09-03",
+  "git_sha": "fa33cf197f1e2d9f804724c330ca945f43352c6d",
+  "metrics_hashes": {},
+  "model_id": "/mnt/vast-kisski/projects/kisski-futurmig/hf_home/hub/ALLaM-7B-Instruct-preview",
+  "parser_version": "2",
+  "prompt_hashes": {
+    "consolidate_global": "9ba49b8393c63479",
+    "consolidate_kitab": "7a4a36cfb6a93a89",
+    "horizon_diff": "3957a53f7277159c",
+    "naive_reading": "28846584b34e729b",
+    "read_commentary": "1ca42aa9f60545be",
+    "reduce_commentary": "b3923a7d7d464c29",
+    "segmentation": "1a06113b117a78f7"
+  },
+  "temperature": 0,
+  "weights_hash": ""
+}

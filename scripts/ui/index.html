@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Query-Agent</title>
+<style>
+:root { --bg:#faf9f6; --panel:#fff; --ink:#1f2328; --muted:#6b7280; --line:#e5e2dc;
+        --accent:#1f5f8b; --ok:#2f7d4f; --warn:#a15c07; --bad:#b42318; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#16181b; --panel:#1e2125; --ink:#e6e6e6; --muted:#9aa0a6; --line:#2e3238;
+          --accent:#6aaee0; --ok:#5fbf85; --warn:#e0a44a; --bad:#f07167; } }
+[hidden] { display:none !important }
+* { box-sizing:border-box }
+body { margin:0; font:15px/1.5 system-ui,"Segoe UI",sans-serif; background:var(--bg); color:var(--ink) }
+.layout { display:grid; grid-template-columns:300px 1fr; min-height:100vh }
+aside { border-right:1px solid var(--line); padding:16px; overflow:auto; max-height:100vh; position:sticky; top:0 }
+main { padding:20px 28px; max-width:980px; width:100% }
+h1 { font-size:18px; margin:0 0 12px }
+h2 { font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:20px 0 8px }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px; margin-bottom:16px }
+label { display:block; font-size:13px; color:var(--muted); margin:10px 0 4px }
+textarea, select, input[type=number], input[type=text] { width:100%; font:inherit; color:inherit;
+  background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:8px }
+.ar { direction:rtl; text-align:right; font-family:"Amiri","Noto Naskh Arabic","Traditional Arabic",serif; font-size:18px; line-height:1.9 }
+.row { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px }
+button, a.btn { font:inherit; border:1px solid var(--line); background:var(--panel); color:var(--ink);
+  border-radius:6px; padding:7px 14px; cursor:pointer; text-decoration:none; display:inline-block }
+button.primary, a.btn.primary { background:var(--accent); border-color:var(--accent); color:#fff }
+button:disabled { opacity:.5; cursor:not-allowed }
+button.icon { padding:0 6px; font-size:13px; margin-left:4px }
+.muted { color:var(--muted); font-size:13px }
+.warn { color:var(--warn) } .bad { color:var(--bad) } .ok { color:var(--ok) }
+.status { display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid currentColor }
+.trail { font:12.5px/1.5 ui-monospace,Consolas,monospace; max-height:300px; overflow:auto;
+  border-top:1px solid var(--line); margin-top:12px; padding-top:8px }
+.trail div { padding:2px 0; border-bottom:1px dashed var(--line); overflow-wrap:anywhere }
+.output { white-space:pre-wrap; max-height:480px; overflow:auto; border:1px solid var(--line);
+  border-radius:6px; padding:12px; background:var(--bg) }
+.item { display:block; padding:8px; border-radius:6px; text-decoration:none; color:inherit; border:1px solid transparent }
+.item:hover { border-color:var(--line); background:var(--panel) }
+.item .q { direction:rtl; text-align:right; font-size:15px }
+pre.err { white-space:pre-wrap; font-size:12px; color:var(--bad); overflow-wrap:anywhere }
+.actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:12px }
+.check { margin:0; display:flex; gap:6px; align-items:center; color:inherit; font-size:14px }
+@media (max-width:760px) {
+  .layout { grid-template-columns:1fr }
+  aside { position:static; max-height:none; border-right:0; border-bottom:1px solid var(--line) }
+  main { padding:16px } }
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <h1>Query-Agent</h1>
+  <h2>Stopped runs</h2>
+  <div id="resumable" class="muted">none</div>
+  <h2>Sessions</h2>
+  <div id="sessions" class="muted">loading…</div>
+</aside>
+<main>
+  <section class="panel" id="form-panel">
+    <label for="question">Question</label>
+    <textarea id="question" class="ar" rows="3" dir="rtl"></textarea>
+    <div class="row">
+      <div><label for="commentator">Commentator</label><select id="commentator"></select></div>
+      <div><label for="corpus">Corpus</label><select id="corpus"></select></div>
+      <div><label for="condition">Condition</label><select id="condition"></select></div>
+      <div><label for="model">Model<button type="button" class="icon" id="refresh-models" title="Refresh the SAIA model list">↻</button></label><select id="model"></select></div>
+      <div><label for="max-tokens">Max tokens</label><input type="number" id="max-tokens" value="4000" min="500" step="500"></div>
+    </div>
+    <div id="passages-row" hidden><label for="passages-file">Passages file (JSON path)</label><input type="text" id="passages-file"></div>
+    <p id="model-warning" class="muted warn" hidden></p>
+    <div class="actions">
+      <label class="check"><input type="checkbox" id="auto-approve"> Auto-approve stages</label>
+      <button class="primary" id="start">Start</button>
+    </div>
+    <p id="form-error" class="bad" hidden></p>
+  </section>
+
+  <section class="panel" id="run-panel" hidden>
+    <div class="actions" style="justify-content:space-between;margin-top:0">
+      <div><span id="run-status" class="status"></span> <strong id="run-stage"></strong> <span id="run-elapsed" class="muted"></span></div>
+      <div class="muted" id="run-meta"></div>
+    </div>
+    <div id="run-question" class="ar" style="margin-top:8px"></div>
+
+    <div id="gate" hidden>
+      <h2 id="gate-title"></h2>
+      <div id="gate-output" class="output ar"></div>
+      <div class="actions">
+        <button class="primary" id="approve">Approve</button>
+        <button id="show-note">Add note</button>
+        <button id="cancel">Cancel run</button>
+      </div>
+      <div id="note-box" hidden>
+        <label for="note">Note — recorded in the intervention log; it does not change the next stage</label>
+        <textarea id="note" rows="3"></textarea>
+        <div class="actions"><button class="primary" id="send-note">Record note and continue</button></div>
+      </div>
+    </div>
+
+    <div id="cancel-running" class="actions" hidden>
+      <button id="cancel2">Cancel run</button><span class="muted" id="cancel-msg"></span>
+    </div>
+
+    <div id="failure" hidden>
+      <pre class="err" id="run-error"></pre>
+      <div class="actions">
+        <button class="primary" id="resume">Resume from last checkpoint</button>
+        <button id="dismiss">Dismiss</button>
+      </div>
+    </div>
+
+    <div id="done" hidden>
+      <div class="actions">
+        <a class="btn primary" id="session-link" target="_blank">Open session</a>
+        <button id="new-question">New question</button>
+      </div>
+    </div>
+
+    <div class="trail" id="trail"></div>
+  </section>
+</main>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const BUSY = ["running", "awaiting_review"];
+const STOPPED = ["done", "cancelled", "failed", "interrupted"];
+let options = null, current = null, traceOffset = 0, pollTimer = null;
+
+async function api(path, opts = {}) {
+  const r = await fetch(path, {headers: {"Content-Type": "application/json"}, ...opts});
+  const body = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(body.detail || r.statusText);
+  return body;
+}
+
+function fill(sel, values, selected, label = v => v) {
+  sel.innerHTML = "";
+  for (const v of values) {
+    const o = document.createElement("option");
+    o.value = v; o.textContent = label(v); o.selected = v === selected;
+    sel.appendChild(o);
+  }
+}
+
+async function loadOptions() {
+  options = await api("/api/options");
+  fill($("commentator"), options.commentators, options.defaults.commentator,
+       c => `${c} (${options.corpus_for[c]})`);
+  fill($("condition"), options.conditions, options.defaults.condition);
+  syncCorpus();
+}
+
+function syncCorpus() {
+  const own = options.corpus_for[$("commentator").value];
+  fill($("corpus"), ["", ...options.corpora], "", v => v || `follows commentator (${own})`);
+}
+
+async function loadModels(refresh = false) {
+  try {
+    const m = await api("/api/models" + (refresh ? "?refresh=1" : ""));
+    fill($("model"), m.models, m.default);
+    $("model-warning").hidden = !m.warning;
+    $("model-warning").textContent = m.warning || "";
+  } catch (e) {
+    $("model-warning").hidden = false;
+    $("model-warning").textContent = "could not load models: " + e.message;
+  }
+}
+
+$("commentator").onchange = syncCorpus;
+$("condition").onchange = () => { $("passages-row").hidden = $("condition").value !== "passages"; };
+$("refresh-models").onclick = () => loadModels(true);
+
+$("start").onclick = async () => {
+  $("form-error").hidden = true;
+  try {
+    const run = await api("/api/runs", {method: "POST", body: JSON.stringify({
+      question: $("question").value, commentator: $("commentator").value,
+      corpus: $("corpus").value || null, condition: $("condition").value,
+      model_id: $("model").value, max_tokens: Number($("max-tokens").value),
+      passages_file: $("passages-file").value || null,
+      auto_approve: $("auto-approve").checked})});
+    attach(run);
+  } catch (e) {
+    $("form-error").textContent = e.message;
+    $("form-error").hidden = false;
+  }
+};
+
+function attach(run) {
+  current = run; traceOffset = 0;
+  $("trail").innerHTML = "";
+  $("gate-output").dataset.stage = "";
+  $("run-panel").hidden = false;
+  render(run);
+  poll();
+}
+
+async function poll() {
+  clearTimeout(pollTimer);
+  if (!current) return;
+  try {
+    const r = await api(`/api/runs/${current.run_id}?trace_offset=${traceOffset}`);
+    traceOffset = r.trace_offset;
+    for (const row of r.trace) addTrail(row);
+    current = r;
+    render(r);
+    if (STOPPED.includes(r.status)) { loadSidebar(); return; }
+  } catch (e) {
+    $("cancel-msg").textContent = "lost contact with the server: " + e.message;
+  }
+  pollTimer = setTimeout(poll, 3000);
+}
+
+function elapsed(iso) {
+  const s = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 1000));
+  return `${Math.floor(s / 60)}m ${s % 60}s`;
+}
+
+function render(r) {
+  const busy = BUSY.includes(r.status);
+  $("start").disabled = busy;
+  const s = $("run-status");
+  s.textContent = r.status.replace("_", " ");
+  s.className = "status " + ({done: "ok", failed: "bad", interrupted: "warn", cancelled: "muted"}[r.status] || "");
+  $("run-stage").textContent = r.stage ? `stage: ${r.stage}` : "";
+  $("run-elapsed").textContent = busy && r.started ? elapsed(r.started) : "";
+  $("run-meta").textContent = `${r.params.commentator} · ${r.params.condition} · ${r.params.model_id}`;
+  $("run-question").textContent = r.params.question;
+
+  $("gate").hidden = r.status !== "awaiting_review";
+  if (r.status === "awaiting_review" && $("gate-output").dataset.stage !== r.stage) {
+    $("gate-title").textContent = `${r.stage} — review`;
+    $("gate-output").textContent = r.output || "(empty)";
+    $("gate-output").dataset.stage = r.stage;
+    $("note-box").hidden = true;
+    $("note").value = "";
+  }
+  if (r.status !== "awaiting_review") $("gate-output").dataset.stage = "";
+
+  $("cancel-running").hidden = r.status !== "running";
+  $("cancel-msg").textContent = r.cancel_requested ? "cancelling after the current call…" : "";
+
+  $("failure").hidden = !["failed", "interrupted"].includes(r.status);
+  $("run-error").textContent = r.status === "interrupted"
+    ? "The server stopped while this run was active. Its progress up to the last completed step is in the checkpoint."
+    : (r.error || "");
+
+  $("done").hidden = r.status !== "done";
+  if (r.session_stem) $("session-link").href = `/sessions/${r.session_stem}.html`;
+}
+
+function addTrail(row) {
+  const d = document.createElement("div");
+  const t = (row.ts || "").slice(11, 19);
+  const what = row.tools.length
+    ? row.tools.map(x => `${x.name}(${x.args})`).join(", ")
+    : "answer" + (row.preview ? ": " + row.preview : "");
+  d.textContent = `${t}  ${row.node}  ${what}  [${row.tokens_in}→${row.tokens_out} tok, ${row.latency_s}s]`
+    + (row.error ? `  ⚠ ${row.error}` : "");
+  if (row.error) d.className = "warn";
+  $("trail").appendChild(d);
+  $("trail").scrollTop = $("trail").scrollHeight;
+}
+
+async function act(path, body) {
+  try {
+    const r = await api(`/api/runs/${current.run_id}/${path}`,
+                        {method: "POST", body: body ? JSON.stringify(body) : undefined});
+    current = {...current, ...r};
+    render(current);
+    poll();
+  } catch (e) { alert(e.message); }
+}
+
+$("approve").onclick = () => act("decision", {action: "approve"});
+$("show-note").onclick = () => { $("note-box").hidden = false; $("note").focus(); };
+$("send-note").onclick = () => act("decision", {action: "edit", note: $("note").value});
+const cancel = () => { if (confirm("Cancel this run? No session file will be written.")) act("cancel"); };
+$("cancel").onclick = cancel;
+$("cancel2").onclick = cancel;
+$("resume").onclick = async () => {
+  try { attach(await api(`/api/runs/${current.run_id}/resume`, {method: "POST"})); }
+  catch (e) { alert(e.message); }
+};
+$("dismiss").onclick = async () => {
+  await act("cancel");
+  $("run-panel").hidden = true; current = null; $("start").disabled = false;
+  loadSidebar();
+};
+$("new-question").onclick = () => {
+  $("run-panel").hidden = true; current = null; $("start").disabled = false;
+  $("question").focus();
+};
+
+function item(title, meta, href) {
+  const a = document.createElement("a");
+  a.className = "item"; a.href = href;
+  const q = document.createElement("div"); q.className = "q"; q.textContent = title;
+  const m = document.createElement("div"); m.className = "muted"; m.textContent = meta;
+  a.append(q, m);
+  return a;
+}
+
+async function loadSidebar() {
+  const [s, runs] = await Promise.all([api("/api/sessions"), api("/api/runs?status=failed,interrupted")]);
+  const sess = $("sessions");
+  sess.textContent = s.sessions.length ? "" : "none yet";
+  for (const x of s.sessions) {
+    const a = item(x.question, `${x.commentator} · ${x.condition} · ${x.model_id || "model not recorded"} · ${x.date}`,
+                   `/sessions/${x.stem}.html`);
+    a.target = "_blank";
+    sess.appendChild(a);
+  }
+  const res = $("resumable");
+  res.textContent = runs.runs.length ? "" : "none";
+  for (const r of runs.runs) {
+    const a = item(r.params.question, `${r.status} · ${r.params.commentator} · ${r.params.model_id}`, "#");
+    a.onclick = e => { e.preventDefault(); attach(r); };
+    res.appendChild(a);
+  }
+}
+
+(async () => {
+  await loadOptions();
+  loadModels();
+  loadSidebar();
+  const a = await api("/api/runs/active");
+  if (a.run) attach(a.run);
+})();
+</script>
+</body>
+</html>
